@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,9 +11,9 @@ namespace DesignPattern
             get => _value;
             set
             {
-                if(_value.Equals(value)) return;
+                if (_value.Equals(value)) return;
                 _value = value;
-                Nofity();
+                Notify();
             }
         }
         private UnityEvent<T> _onValueChanged = new();
@@ -36,14 +33,14 @@ namespace DesignPattern
             _onValueChanged.RemoveListener(action);
         }
 
-        public void UnsubscribeAll()
+        public void UnsbscribeAll()
         {
             _onValueChanged.RemoveAllListeners();
         }
 
-        private void Nofity()
+        private void Notify()
         {
-            _onValueChanged.Invoke(Value);
+            _onValueChanged?.Invoke(Value);
         }
     }
 }

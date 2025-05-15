@@ -7,12 +7,11 @@ namespace DesignPattern
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         private static T _instance;
-
         public static T Instance
         {
             get
             {
-                if (_instance == null)
+                if(_instance == null)
                 {
                     _instance = FindObjectOfType<T>();
                     DontDestroyOnLoad(_instance);
@@ -23,13 +22,14 @@ namespace DesignPattern
 
         protected void SingletonInit()
         {
-            if (_instance != null && _instance != this)
+            if(_instance != null && _instance != this)
             {
-                Destroy(gameObject);
+                Destroy(gameObject);            
             }
             else
             {
                 _instance = this as T;
+                DontDestroyOnLoad(_instance);
             }
         }
     }
